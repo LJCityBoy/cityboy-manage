@@ -1,6 +1,6 @@
 <template>
   <div class="row">
-    <div  class="col-md-2" >
+    <div  class="col-md-2 col-sm-1" >
       <div class="cb-left" >
         <ul id="cb-left-menu">
           <li v-for="menu in menus">
@@ -12,7 +12,7 @@
         </ul>
       </div>
     </div>
-    <div class="col-md-10  cb-right">
+    <div class="col-md-10 col-sm-1 cb-right">
       <router-view/>
     </div>
   </div>
@@ -44,6 +44,8 @@
   }
   .cb-right{
     background-color: #70dbdb;
+    margin: 0!important;
+    padding: 0!important;
   }
   .cb-left ul{
     margin: 0;

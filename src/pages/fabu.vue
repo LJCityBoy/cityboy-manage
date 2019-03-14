@@ -1,29 +1,31 @@
 <template>
-  <div>
-   <Editor v-model="tinymceHtml" :init="editorInit"></Editor>
+  <div class="cb-editor">
+    <Tinymce v-model="Value"></Tinymce>
+    <!-- 输出值:{{Value}}-->
   </div>
 </template>
 
 <script>
-  import tinymce from 'tinymce/tinymce'
-  import 'tinymce/themes/mobile/theme'
-  import Editor from '@tinymce/tinymce-vue'
-
+// console.log('using');
+  import Tinymce from '../components/tinymced'
+  window.tinymce.baseURL = '/static/tinymce'
+  window.tinymce.suffix = '.min'
     export default {
         components:{
-          Editor
+         Tinymce
         },
-      editorInit: {
-        language_url: '/static/zh_CN.js',
-        language: 'zh_CN',
-        height: 300
-      },
-      mounted(){
-          ty
+      data(){
+          return {
+            Value:''
+          }
       }
     }
 </script>
 
 <style scoped>
+  .cb-editor{
+    padding: 0;
+    margin: 0;
+  }
 
 </style>
