@@ -43,7 +43,7 @@
     margin-bottom: 25px;
   }
   .cb-right{
-    background-color: #70dbdb;
+    /*background-color: #70dbdb;*/
     margin: 0!important;
     padding: 0!important;
   }
