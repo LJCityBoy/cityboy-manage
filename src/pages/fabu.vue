@@ -8,6 +8,24 @@
       <Tinymce v-model="Value"></Tinymce>
       <!-- 输出值:{{Value}}-->
     </div>
+    <div class="cb-cover">
+      <label>封面：</label>
+      <div class="cb-cover-img">
+        <img src="../assets/images/noimg.gif" alt="" id="cb-corver-img">
+      </div>
+      <div class="cb-cover-input">
+        <input @input="upImage" type="file" name="file" >
+        <a>上传图片</a>
+      </div>
+      <div class="cb-cover-tip">
+        <span>图片尺寸建议：800*400 图片大小不超过1MB</span>
+      </div>
+    </div>
+    <div class="cb-fabu-upload">
+      <!--<input type="button" @input="cbSubmit" value="提交">-->
+      <button v-on:click="cbSubmit">提交</button>
+    </div>
+
   </div>
 </template>
 
@@ -23,7 +41,8 @@
     data(){
       return {
         Value:'',
-        inputValue:''
+        inputValue:'',
+        file:''
       }
     },
     methods:{
@@ -35,9 +54,67 @@
           thisArea.target.focus();
         }
         this.inputValue = thisArea.target.value;
+      },
+      upImage(e){
+        //把读取到的图片显示在上边
+        let file = e.target.files[0];
+        console.log(e);
+        //临时显示用的url
+        let url = window.URL.createObjectURL(file);
+        document.getElementById('cb-corver-img').src = url;
+        this.file = file;
+        console.log(url);
+      },
+      cbSubmit(){
+        // console.log(this.inputValue,this.Value,this.file)
+        // let formData = new FormData();
+        // formData.append('articleTitle',this.inputValue);
+        // formData.append('articleData', this.Value);
+        // formData.append('coverIcon', this.file);
+        // console.log('1--',formData);
+        let dat = {
+          articleTitle : this.inputValue,
+          articleData : this.Value,
+          coverIcon : this.file,
+          postTime : new Date().getTime(),
+          author : 'cityboy'
+        };
+        console.log(dat);
+        //ajax上传
+        /*
+        $.ajax({
+          url:'http://localhost:9001/api/upload_article',
+          type:'post',
+          data:{
+            articleTitle : this.inputValue,
+            articleData : this.Value,
+            coverIcon : this.file.length
+          },
+          success:function (res) {
+            console.log(res);
+          }
+        })
+        */
+        console.log('是否有值', this.inputValue);
+
+        //fetch上传
+        var formData = new FormData();
+        formData.append('articleTitle',this.inputValue);
+        formData.append('articleData',this.Value);
+        formData.append('coverIcon',this.file);
+        formData.append('postTime',new Date().getTime());
+        formData.append('author','cityboy');
+        console.log('formData',formData.getAll('coverIcon'));
+        fetch('http://localhost:9001/api/upload_article',{
+          method:'post',
+          body:formData
+        }).then(response => response.json())
+          .then(response => console.log('Success:', JSON.stringify(response)))
+          .catch(error => console.error('Error:', error));
+
+
       }
     }
-
   }
 </script>
 
@@ -67,6 +144,63 @@
   }
   .cb-title-text span{
     color: #70dbdb;
+  }
+  .cb-cover{
+    position: relative;
+  }
+  .cb-cover label{
+    height: 30px;
+    line-height: 30px;
+  }
+  .cb-cover-img{
+    border: 1px solid #9b9b9b;
+    width: 202px;
+    height: auto;
+  }
+  .cb-cover-img img{
+    width: 200px;
+    height: auto;
+  }
+  .cb-cover-input{
+    width: 100px;
+    position: relative;
+    margin-top: 15px;
+  }
+  .cb-cover-input a{
+    display: inline-block;
+    width: 100px;
+    height: 40px;
+    line-height: 40px;
+    background-color: #e8e8e8;
+    color: #287FC2;
+    text-align: center;
+    border: #9b9b9b solid 1px;
+
+  }
+  .cb-cover-input input{
+    display: inline-block;
+    width: 100px;
+    height: 40px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+  }
+  .cb-cover-tip {
+   margin: 5px 0px 10px 0px;
+  }
+  .cb-fabu-upload{
+    text-align: center;
+  }
+  .cb-fabu-upload button{
+    width: 100px;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    background-color: #cd796f;
+    color: white;
+    outline: none;
+    border: 1px solid #9b9b9b;
   }
 
 </style>

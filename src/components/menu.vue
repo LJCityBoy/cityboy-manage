@@ -44,8 +44,9 @@
   }
   .cb-right{
     /*background-color: #70dbdb;*/
-    margin: 0!important;
+    margin: 0 0 35px 0 !important;
     padding: 0!important;
+    height: auto;
   }
   .cb-left ul{
     margin: 0;
