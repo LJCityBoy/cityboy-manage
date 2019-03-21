@@ -7,12 +7,12 @@
         name: "index",
       data(){
           return{
-            article:''
+
           }
       },
-      mounted(){
+      methods:{
+        getArticle:function () {
           console.log('请求数据');
-        function getArticle() {
           $.ajax({
             url:'http://localhost:9001/api/test',
             type:'get',
@@ -22,9 +22,16 @@
             }
           })
         }
-        getArticle();
+      },
+      created(){
+        this.getArticle();
+      },
+      mounted(){
+
       }
     }
+
+
 </script>
 
 <style scoped>
