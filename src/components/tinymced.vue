@@ -4,8 +4,7 @@
   </div>
 </template>
 <script>
-  // console.log('init');
-  import '../../static/tinymce/tinymce.min'
+  import '../../static/tinymce/tinymce.js'
   export default {
     name:'tinymced',
     data () {

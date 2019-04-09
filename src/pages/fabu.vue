@@ -32,7 +32,7 @@
 <script>
   // console.log('using');
   import Tinymce from '../components/tinymced'
-  window.tinymce.baseURL = '/static/tinymce'
+  window.tinymce.baseURL = './static/tinymce'
   window.tinymce.suffix = '.min'
   export default {
     components:{
@@ -66,36 +66,7 @@
         console.log(url);
       },
       cbSubmit(){
-        // console.log(this.inputValue,this.Value,this.file)
-        // let formData = new FormData();
-        // formData.append('articleTitle',this.inputValue);
-        // formData.append('articleData', this.Value);
-        // formData.append('coverIcon', this.file);
-        // console.log('1--',formData);
-        let dat = {
-          articleTitle : this.inputValue,
-          articleData : this.Value,
-          coverIcon : this.file,
-          postTime : new Date().getTime(),
-          author : 'cityboy'
-        };
-        console.log(dat);
-        //ajax上传
-        /*
-        $.ajax({
-          url:'http://localhost:9001/api/upload_article',
-          type:'post',
-          data:{
-            articleTitle : this.inputValue,
-            articleData : this.Value,
-            coverIcon : this.file.length
-          },
-          success:function (res) {
-            console.log(res);
-          }
-        })
-        */
-        console.log('是否有值', this.inputValue);
+        // console.log('是否有值', this.inputValue);
 
         //fetch上传
         var formData = new FormData();
@@ -104,7 +75,7 @@
         formData.append('coverIcon',this.file);
         formData.append('postTime',new Date().getTime());
         formData.append('author','cityboy');
-        console.log('formData',formData.getAll('coverIcon'));
+        // console.log('formData',formData.getAll('coverIcon'));
         fetch('http://localhost:9001/api/upload_article',{
           method:'post',
           body:formData
