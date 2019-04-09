@@ -49,7 +49,7 @@ module.exports = {
      * Source Maps
      */
 
-    productionSourceMap: false, //默认为true，即可以调试
+    productionSourceMap: true, //默认为true，即可以调试
     // https://webpack.js.org/configuration/devtool/#production
     devtool: '#source-map',
 

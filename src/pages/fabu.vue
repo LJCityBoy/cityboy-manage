@@ -76,7 +76,7 @@
         formData.append('postTime',new Date().getTime());
         formData.append('author','cityboy');
         // console.log('formData',formData.getAll('coverIcon'));
-        fetch('http://localhost:9001/api/upload_article',{
+        fetch('http://132.232.40.236:9001/api/upload_article',{
           method:'post',
           body:formData
         }).then(response => response.json())
