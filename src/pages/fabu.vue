@@ -76,8 +76,12 @@
         formData.append('postTime',new Date().getTime());
         formData.append('author','cityboy');
         // console.log('formData',formData.getAll('coverIcon'));
-        fetch('http://132.232.40.236:9001/api/upload_article',{
+        fetch('http://localhost:9001/api/upload_article',{
           method:'post',
+          mode:'no-cors',
+          headers:{
+            "Content-Type":"application/x-www-form-urlencoded" //允许跨域
+          },
           body:formData
         }).then(response => response.json())
           .then(response => console.log('Success:', JSON.stringify(response)))
