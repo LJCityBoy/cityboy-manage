@@ -32,6 +32,10 @@
 <script>
   // console.log('using');
   import Tinymce from '../components/tinymced'
+  // import { type } from 'os';
+  // import func from '../../vue-temp/vue-editor-bridge';
+  // import axios from 'vue-axios';
+  // import qs from 'qs';
   window.tinymce.baseURL = './static/tinymce'
   window.tinymce.suffix = '.min'
   export default {
@@ -68,7 +72,28 @@
       cbSubmit(){
         // console.log('是否有值', this.inputValue);
 
+
+        // axios({
+        //    url: 'http://localhost:9001/api/upload_article',
+        //    methods:'post',
+        //     headers:{
+        //     "Content-Type":"application/x-www-form-urlencoded" //允许跨域
+        //   },
+        //    data:qs.stringify({
+        //     articleTitle:this.inputValue,
+        //      articleData:this.Value,
+        //      coverIcon:this.file,
+        //      postTime: new Date().getTime(),
+        //      author:'cityboy'
+        //    })
+        // }).then(function(response){
+        //   console.log(response);
+        // }).catch(function(err){
+        //   console.log(err);
+        // })
+
         //fetch上传
+      
         var formData = new FormData();
         formData.append('articleTitle',this.inputValue);
         formData.append('articleData',this.Value);
@@ -76,17 +101,25 @@
         formData.append('postTime',new Date().getTime());
         formData.append('author','cityboy');
         // console.log('formData',formData.getAll('coverIcon'));
-        fetch('http://localhost:9001/api/upload_article',{
+        // let postData = {
+        //   articleTitle: this.inputValue,
+        //   articleData:this.Value,
+        //   coverIcon:this.file,
+        //   postTime: new Date().getTime(),
+        //   author:'cityboy'
+        // }
+        fetch('http://132.232.40.236:9001/api/upload_article',{
           method:'post',
-          mode:'no-cors',
+          mode:"no-cors",//允许跨域
           headers:{
-            "Content-Type":"application/x-www-form-urlencoded" //允许跨域
+            "Cfeontent-Type":"application/x-www-form-urlencoded" ,
+            // "Content-Type":"application/json"
           },
           body:formData
         }).then(response => response.json())
           .then(response => console.log('Success:', JSON.stringify(response)))
           .catch(error => console.error('Error:', error));
-
+          
 
       }
     }

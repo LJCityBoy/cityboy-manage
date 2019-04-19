@@ -6,6 +6,7 @@ import router from './router'
 import 'bootstrap/dist/js/bootstrap.min'
 import 'bootstrap/dist/css/bootstrap.min.css'
 
+
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */
@@ -15,3 +16,4 @@ new Vue({
   components: { App },
   template: '<App/>'
 })
+
