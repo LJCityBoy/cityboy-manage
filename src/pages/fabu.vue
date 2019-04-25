@@ -69,7 +69,7 @@ export default {
       let url = window.URL.createObjectURL(file);
       document.getElementById("cb-corver-img").src = url;
       this.file = file;
-      console.log(url);
+      console.log(typeof this.file);
     },
     cbSubmit() {
       // console.log('是否有值', this.inputValue);
@@ -97,7 +97,7 @@ export default {
 
       let postData = {
         articleTitle: this.inputValue,
-        articleData: encodeURI(this.Value),
+        articleData: this.Value,
         coverIcon: this.file,
         postTime: new Date().getTime(),
         author: "cityboy"
