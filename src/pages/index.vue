@@ -14,7 +14,7 @@
         getArticle:function () {
           console.log('请求数据');
           $.ajax({
-            url:'http://132.232.40.236:9001/api/test',
+            url:'http://localhost:9001/api/test',
             type:'get',
             success:function (obj) {
               console.log(obj);
